@@ -46,7 +46,7 @@ class ValueRow:
 class MainWindow(QMainWindow):
     def __init__(self, model: TripleModel) -> None:
         super().__init__()
-        self.setWindowTitle("ЛР 3.2 MVC - A, B, C")
+        self.setWindowTitle("ЛР 3.2 MVC")
         self.resize(920, 460)
 
         self._model = model
@@ -165,10 +165,6 @@ class MainWindow(QMainWindow):
         self._status.setText(
             f"Обновлений UI: {self._ui_update_count} | Уведомлений модели: {self._model.notify_count} | "
             f"A={state.a}, B={state.b}, C={state.c}"
-        )
-        print(
-            f"UI update #{self._ui_update_count}: A={state.a}, B={state.b}, C={state.c}, "
-            f"model notifications={self._model.notify_count}"
         )
 
         self._is_syncing = False

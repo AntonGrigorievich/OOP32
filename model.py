@@ -12,8 +12,6 @@ class TripleState:
 
 
 class TripleModel:
-    """Самодостаточная модель MVC: хранение, правила, уведомления, persistence."""
-
     def __init__(self, storage_path: Path) -> None:
         self._min_value = 0
         self._max_value = 100
@@ -55,7 +53,6 @@ class TripleModel:
         self._apply_state(TripleState(a, b, c))
 
     def set_b(self, value: int) -> None:
-        # Ограничивающее поведение: приводим к ближайшему значению внутри [A, C].
         candidate = self._clamp_range(value)
         a, c = self._state.a, self._state.c
         new_b = max(a, min(candidate, c))
@@ -121,7 +118,6 @@ class TripleModel:
         b = self._clamp_range(b)
         c = self._clamp_range(c)
 
-        # Нормализуем согласно бизнес-правилу A <= B <= C.
         if b < a:
             b = a
         if c < b:
